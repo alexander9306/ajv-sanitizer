@@ -22,20 +22,20 @@ const assert = require('assert');
 // or create your own sanitizers
 
 const extraSanitizers = {
-  uppercase: (text) => text.toUpperCase(),
-	trim: (text) => text.trim(),
+ uppercase: (text) => text.toUpperCase(),
+ trim: (text) => text.trim(),
 }
 const ajv = new Ajv();
 ajvSanitizer(ajv, extraSanitizers);
 
 const schema = {
-	type: 'object',
-	properties: {
-		value: {
-			type: 'string',
-			sanitize: ['trim','uppercase'],
-		},
+ type: 'object',
+  properties: {
+   value: {
+    type: 'string',
+	  sanitize: ['trim','uppercase'],
 	},
+   },
 };
 
 // sanitized data must be an object property
