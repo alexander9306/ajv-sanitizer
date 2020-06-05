@@ -23,9 +23,7 @@ const assert = require('assert');
 
 const extraSanitizers = {
   uppercase: (text) => text.toUpperCase(),
-	lowercase: (text) => text.toLowerCase(),
 	trim: (text) => text.trim(),
-	date: (text) => new Date(text),
 }
 const ajv = new Ajv();
 ajvSanitizer(ajv, extraSanitizers);
