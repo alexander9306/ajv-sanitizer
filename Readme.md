@@ -1,8 +1,9 @@
-# ajv-sanitizer
+# ajv-sanitizer with Array Support
 
 String sanitization with JSON-Schema using [Ajv](https://www.npmjs.com/package/ajv).  
 
-[![npm](https://img.shields.io/npm/v/ajv-sanitizer.svg)](https://www.npmjs.com/package/ajv-sanitizer)
+This Package extends the library ajv-sanitizer to support arrays to add multiple sanitizings at once.
+<!-- [![npm](https://img.shields.io/npm/v/ajv-sanitizer.svg)](https://www.npmjs.com/package/ajv-sanitizer) -->
 
 It uses the library [validator.js](https://www.npmjs.com/package/validator) under the hood for string sanitizion.
 
@@ -10,8 +11,7 @@ It uses the library [validator.js](https://www.npmjs.com/package/validator) unde
 
 ### Installation
 
-Install the library with `npm install ajv-sanitizer`
-
+Install the library by downloading the index.js file on the root folder of this repo
 ### Usage
 
 ```javascript
@@ -19,27 +19,35 @@ const Ajv = require('ajv');
 const ajvSanitizer = require('ajv-sanitizer');
 const assert = require('assert');
 
+//Even though this project comes with a few validators included I suggest you to create your own with a library like https://github.com/validatorjs/validator.js or create your own validations
+
+const extraSanitizers = {
+  uppercase: (text) => text.toUpperCase(),
+	lowercase: (text) => text.toLowerCase(),
+	trim: (text) => text.trim(),
+	date: (text) => new Date(text),
+}
 const ajv = new Ajv();
-ajvSanitizer(ajv);
+ajvSanitizer(ajv, extraSanitizers);
 
 const schema = {
 	type: 'object',
 	properties: {
 		value: {
 			type: 'string',
-			sanitize: 'text',
+			sanitize: ['trim','uppercase'],
 		},
 	},
 };
 
 // sanitized data must be an object property
 const data = {
-	value: ' trim & escape string',
+	value: ' trim & uppercase',
 };
 
 ajv.validate(schema, data);
 
-assert(data.value === 'trim &amp; escape string');
+assert(data.value === 'TRIM & UPPERCASE');
 ```
 
 #### ES6
