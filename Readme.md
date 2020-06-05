@@ -33,8 +33,8 @@ const schema = {
   properties: {
    value: {
     type: 'string',
-	  sanitize: ['trim','uppercase'],
-	},
+	 sanitize: ['trim','uppercase'],
+	 },
    },
 };
 
