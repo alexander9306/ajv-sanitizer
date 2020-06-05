@@ -5,13 +5,12 @@ String sanitization with JSON-Schema using [Ajv](https://www.npmjs.com/package/a
 This Package extends the library ajv-sanitizer to support arrays to add multiple sanitizings at once.
 <!-- [![npm](https://img.shields.io/npm/v/ajv-sanitizer.svg)](https://www.npmjs.com/package/ajv-sanitizer) -->
 
-It uses the library [validator.js](https://www.npmjs.com/package/validator) under the hood for string sanitizion.
 
 ## Installation and Usage
 
 ### Installation
 
-Install the library by downloading the index.js file on the root folder of this repo
+Install the library by downloading the index.js file on the root folder
 ### Usage
 
 ```javascript
@@ -19,7 +18,8 @@ const Ajv = require('ajv');
 const ajvSanitizer = require('ajv-sanitizer');
 const assert = require('assert');
 
-//Even though this project comes with a few validators included I suggest you to create your own with a library like https://github.com/validatorjs/validator.js or create your own validations
+// I suggest you to use a library like https://github.com/validatorjs/validator.js 
+// or create your own sanitizers
 
 const extraSanitizers = {
   uppercase: (text) => text.toUpperCase(),
