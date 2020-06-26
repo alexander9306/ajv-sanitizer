@@ -31,6 +31,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/ajv": "^1.0.0",
     "validator": "^11.1.0"
   },
   "devDependencies": {
